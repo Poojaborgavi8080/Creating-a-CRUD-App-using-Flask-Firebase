@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase CRUD</title>
+</head>
+<body>
+    <h1>Add User</h1>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="number" name="age" placeholder="Age" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>Users List</h2>
+    <table border="1">
+        <tr><th>Name</th><th>Age</th><th>Actions</th></tr>
+        {% if users %}
+            {% for key, user in users.items() %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.age }}</td>
+                <td>
+                    <a href="/update/{{ key }}">Edit</a> |
+                    <a href="/delete/{{ key }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr><td colspan="3">No users found</td></tr>
+        {% endif %}
+    </table>
+</body>
+</html>
